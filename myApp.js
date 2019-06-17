@@ -97,8 +97,6 @@ var createAndSavePerson = function(done) {
     done(null , data);
   });
 
-  
-
 };
 
 /** 4) Create many People with `Model.create()` */
@@ -112,8 +110,28 @@ var createAndSavePerson = function(done) {
 
 var createManyPeople = function(arrayOfPeople, done) {
     
-    done(null/*, data*/);
-    
+    let people = [
+      {
+        "name": "Matt",
+        "age": 40,
+        "favoriteFoods": ["pizza","steak"]
+      },
+      {
+        "name": "Cohen",
+        "age": 11,
+        "favoriteFoods": ["pizza","steak"]
+      },
+      {
+        "name": "Layne",
+        "age": 9,
+        "favoriteFoods": ["pizza","steak"]
+      }
+    ];
+
+    Person.create(people, (err, data) => {
+      done(null, data);
+    });
+  
 };
 
 /** # C[R]UD part II - READ #
