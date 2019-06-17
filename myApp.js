@@ -76,3 +76,5 @@ exports.createManyPeople = createManyPeople;
 exports.removeById = removeById;
 exports.removeManyPeople = removeManyPeople;
 exports.queryChain = queryChain;
+exports.mongodb = mongodb;
+exports.mongoose = mongoose;
