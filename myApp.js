@@ -195,9 +195,14 @@ var findPersonById = function(personId, done) {
 // (http://mongoosejs.com/docs/schematypes.html - #Mixed )
 
 var findEditThenSave = function(personId, done) {
-  var foodToAdd = 'hamburger';
   
-  done(null/*, data*/);
+  var foodToAdd = 'hamburger';
+  Person.findById(personId, (err, person) => {
+    person.favoriteFoods.push(foodToAdd);
+    person.save();
+    done(null, person);
+  });
+
 };
 
 /** 9) New Update : Use `findOneAndUpdate()` */
