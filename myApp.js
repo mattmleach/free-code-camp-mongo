@@ -223,6 +223,14 @@ var findEditThenSave = function(personId, done) {
 var findAndUpdate = function(personName, done) {
   var ageToSet = 20;
   
+  Person.findOneAndUpdate({ name: personName },
+    { $set: { age: 20 } }, { returnNewDocument: true },
+    (err, doc) => {
+      if(err) {
+        console.log(err);
+      }
+      console.log(doc);
+    })
   done(null/*, data*/);
 };
 
