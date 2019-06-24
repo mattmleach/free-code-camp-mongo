@@ -226,8 +226,8 @@ var findAndUpdate = function(personName, done) {
   Person.findOneAndUpdate({ name: personName },
     { $set: { age: 20 } },
      { returnNewDocument: true },
-    (err, doc) => {
-      done(null, doc);
+    (err, data) => {
+      done(null, data);
     })
 
 };
@@ -244,8 +244,10 @@ var findAndUpdate = function(personName, done) {
 
 var removeById = function(personId, done) {
   
-  done(null/*, data*/);
-    
+  Person.findByIdAndRemove(personId, (err, data) => {
+    done(null, data);
+  });
+      
 };
 
 /** 11) Delete many People */
