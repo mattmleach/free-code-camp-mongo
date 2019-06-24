@@ -164,7 +164,7 @@ var findOneByFood = function(food, done) {
 var findPersonById = function(personId, done) {
   
   Person.findById(personId, (err, data) => {
-    done(null, data);
+    done(err, data);
   });
   
 };
@@ -199,7 +199,7 @@ var findEditThenSave = function(personId, done) {
   Person.findById(personId, (err, person) => {
     person.favoriteFoods.push(foodToAdd);
     person.save(err => {
-      done(null, person);
+      done(err, person);
     });
   });
 
@@ -227,7 +227,7 @@ var findAndUpdate = function(personName, done) {
     { $set: { age: 20 } },
      { returnNewDocument: true },
     (err, data) => {
-      done(null, data);
+      done(err, data);
     })
 
 };
@@ -245,7 +245,7 @@ var findAndUpdate = function(personName, done) {
 var removeById = function(personId, done) {
 
   Person.findByIdAndRemove(personId, (err, data) => {
-    done(null, data);
+    done(err, data);
   });
       
 };
@@ -263,7 +263,7 @@ var removeById = function(personId, done) {
 var removeManyPeople = function(done) {
   var nameToRemove = "Mary";
   Person.remove({ name: nameToRemove }, (err, data) => {
-    done(null, data);
+    done(err, data);
   });
 };
 
@@ -287,8 +287,13 @@ var removeManyPeople = function(done) {
 
 var queryChain = function(done) {
   var foodToSearch = "burrito";
-  
-  done(null/*, data*/);
+  Person.find({ favoriteFoods: 'burrito' })
+    .sort({ name: 1 })
+    .limit(2)
+    .select("-age")
+    .exec((err, data) => {
+      done(err, data);
+    });
 };
 
 /** **Well Done !!**
